@@ -357,16 +357,16 @@ class CloudsmithCheck(AgentCheck):
             self.log.warning("Error while parsing JSON for usage information")
 
         # Update GB conversions using peak
-        storage_used_gb = round(storage_peak_bytes / (1024**3), 2) if storage_peak_bytes != -1 else -1
-        storage_plan_limit_gb = round(storage_plan_limit_bytes / (1024**3), 2) if storage_plan_limit_bytes != -1 else -1
-        bandwidth_used_gb = round(bandwidth_used_bytes / (1024**3), 2) if bandwidth_used_bytes != -1 else -1
+        storage_used_gb = round(storage_peak_bytes / (10**9), 2) if storage_peak_bytes != -1 else -1
+        storage_plan_limit_gb = round(storage_plan_limit_bytes / (10**9), 2) if storage_plan_limit_bytes != -1 else -1
+        bandwidth_used_gb = round(bandwidth_used_bytes / (10**9), 2) if bandwidth_used_bytes != -1 else -1
         bandwidth_plan_limit_gb = (
-            round(bandwidth_plan_limit_bytes / (1024**3), 2) if bandwidth_plan_limit_bytes != -1 else -1
+            round(bandwidth_plan_limit_bytes / (10**9), 2) if bandwidth_plan_limit_bytes != -1 else -1
         )
         # New: configured values in GB
-        storage_configured_gb = round(storage_configured_bytes / (1024**3), 2) if storage_configured_bytes != -1 else -1
+        storage_configured_gb = round(storage_configured_bytes / (10**9), 2) if storage_configured_bytes != -1 else -1
         bandwidth_configured_gb = (
-            round(bandwidth_configured_bytes / (1024**3), 2) if bandwidth_configured_bytes != -1 else -1
+            round(bandwidth_configured_bytes / (10**9), 2) if bandwidth_configured_bytes != -1 else -1
         )
 
         # Update percentage used: peak / configured * 100
